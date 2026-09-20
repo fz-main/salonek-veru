@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", "PP Editorial New", Georgia, serif;
+  --font-sans: "Montserrat", "Helvetica Now", "Inter", system-ui, sans-serif;
+  --font-display: "Montserrat", "Helvetica Now", system-ui, sans-serif;
+
+  --color-primary: #0a0a0a;
+  --color-secondary: #1a1a1a;
+  /* фирменный цвет салона (кнопки/акценты на salonekveru.cz) */
+  --color-accent: #DFA378;
+  --color-text: #f8f5f2;
+  --color-text-light: #a3a3a3;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+.font-editorial { font-family: var(--font-serif); }
+.font-montreal { font-family: var(--font-sans); }
+.font-monument { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; }
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* фон: медленное приближение фото и тёплое свечение */
+@keyframes kenburns {
+  from { transform: scale(1.06) translate3d(0, 0, 0); }
+  to { transform: scale(1.2) translate3d(-2%, -1.5%, 0); }
+}
+.kenburns { animation: kenburns 16s ease-in-out infinite alternate; }
+
+@keyframes glow-drift {
+  0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  100% { background-position: 30% 20%, 70% 80%, 50% 50%; }
+}
+.bg-glow {
+  background:
+    radial-gradient(55% 50% at 20% 20%, rgba(223, 163, 120, 0.55), transparent 72%),
+    radial-gradient(50% 50% at 80% 75%, rgba(223, 163, 120, 0.42), transparent 72%),
+    radial-gradient(70% 60% at 50% 50%, rgba(120, 82, 64, 0.6), transparent 82%);
+  background-size: 140% 140%, 140% 140%, 100% 100%;
+  animation: glow-drift 18s ease-in-out infinite alternate;
+}
